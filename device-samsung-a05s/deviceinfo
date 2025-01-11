@@ -1,0 +1,39 @@
+# Reference: <https://postmarketos.org/deviceinfo>
+# Please use double quotes only. You can source this file in shell
+# scripts.
+
+deviceinfo_format_version="0"
+deviceinfo_name="Samsung Galaxy A05s"
+deviceinfo_manufacturer="Samsung"
+deviceinfo_codename="samsung-a05s"
+deviceinfo_year="2023"
+deviceinfo_arch="aarch64"
+
+# Device related
+deviceinfo_chassis="handset"
+deviceinfo_external_storage="true"
+deviceinfo_screen_width="1080"
+deviceinfo_screen_height="2400"
+deviceinfo_initfs_compression="gzip:default"
+
+# Bootloader related
+deviceinfo_flash_method="heimdall-bootimg"
+deviceinfo_kernel_cmdline="printk.devkmsg=on bootconfig androidboot.hardware=qcom androidboot.memcg=1 androidboot.load_modules_parallel=true androidboot.usbcontroller=4e00000.dwc3 loop.max_part=7 androidboot.selinux=permissive buildvariant=eng"
+deviceinfo_bootimg_custom_args="--header_version 2 --os_version 13.0.0 --os_patch_level 2037-12"
+deviceinfo_generate_bootimg="true"
+deviceinfo_flash_pagesize="4096"
+deviceinfo_flash_offset_base="0x00000000"
+deviceinfo_flash_offset_kernel="0x00008000"
+deviceinfo_flash_offset_ramdisk="0x02000000"
+deviceinfo_flash_offset_second="0x00000000"
+deviceinfo_flash_offset_tags="0x01e00000"
+deviceinfo_flash_sparse="true"
+deviceinfo_flash_heimdall_partition_kernel="BOOT"
+deviceinfo_flash_heimdall_partition_rootfs="SUPER"
+deviceinfo_flash_heimdall_partition_vbmeta="VBMETA"
+deviceinfo_rootfs_image_sector_size="4096"
+
+# Samsung Electronics Co., Ltd.
+deviceinfo_usb_idVendor="0x04e8"
+# Galaxy series (RNDIS)
+deviceinfo_usb_idProduct="0x6863"

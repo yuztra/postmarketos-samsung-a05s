@@ -1,0 +1,13 @@
+diff --git a/arch/arm64/boot/dts/Makefile b/arch/arm64/boot/dts/Makefile
+index 680ee9ead..d5af67301 100644
+--- a/arch/arm64/boot/dts/Makefile
++++ b/arch/arm64/boot/dts/Makefile
+@@ -3,7 +3,7 @@
+ 
+ dtstree	:= $(srctree)/$(src)
+ vendor  := $(dtstree)/vendor
+-ifneq "$(wildcard $(vendor)/Makefile)" ""
++ifeq "$(wildcard $(vendor)/Makefile)" ""
+ 	subdir-y += actions
+ 	subdir-y += allwinner
+ 	subdir-y += altera

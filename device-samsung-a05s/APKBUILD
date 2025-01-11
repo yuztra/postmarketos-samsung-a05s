@@ -1,0 +1,30 @@
+# Reference: <https://postmarketos.org/devicepkg>
+pkgname=device-samsung-a05s
+pkgdesc="Samsung Galaxy A05s"
+pkgver=1
+pkgrel=0
+url="https://postmarketos.org"
+license="MIT"
+arch="aarch64"
+options="!check !archcheck"
+depends="
+	linux-samsung-a05s
+	mkbootimg
+	postmarketos-base
+"
+makedepends="devicepkg-dev"
+source="
+	deviceinfo
+"
+
+build() {
+	devicepkg_build $startdir $pkgname
+}
+
+package() {
+	devicepkg_package $startdir $pkgname
+}
+
+sha512sums="
+9b1a31e9dd581cbcc2fafd56b8e189294dc351a865c53a69d24fab82aecc37054713f11cb8da99ed0d685905f70342d1c4cad49c6ebbb138c06c6250de54d3bf  deviceinfo
+"

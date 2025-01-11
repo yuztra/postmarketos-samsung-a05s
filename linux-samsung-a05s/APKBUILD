@@ -1,0 +1,61 @@
+# Reference: <https://postmarketos.org/vendorkernel>
+# Kernel config based on: arch/arm64/configs/(CHANGEME!)
+
+pkgname=linux-samsung-a05s
+pkgver=5.15.123
+pkgrel=0
+pkgdesc="Samsung Galaxy A05s kernel fork"
+arch="aarch64"
+_carch="arm64"
+_flavor="samsung-a05s"
+url="https://kernel.org"
+license="GPL-2.0-only"
+options="!strip !check !tracedeps pmb:cross-native"
+makedepends="
+	bash
+	bc
+	bison
+	devicepkg-dev
+	findutils
+	flex
+	elfutils-dev
+	openssl-dev
+	perl
+"
+
+# Source
+_repository="android_kernel_samsung_bengal-5.15"
+_commit="84bb912e0c40bcc8050a0176c60308a4c89dd51a"
+_config="config-$_flavor.$arch"
+source="
+	$pkgname-$_commit.tar.gz::https://github.com/cd-Crypton/$_repository/archive/$_commit.tar.gz
+	$_config
+	01-build-dtb.patch
+"
+builddir="$srcdir/$_repository-$_commit"
+_outdir="out"
+
+prepare() {
+	default_prepare
+	REPLACE_GCCH=0 . downstreamkernel_prepare
+}
+
+build() {
+	unset LDFLAGS
+	make O="$_outdir" ARCH="$_carch" CC="${CC:-gcc}" \
+		KBUILD_BUILD_VERSION="$((pkgrel + 1 ))-postmarketOS"
+}
+
+package() {
+	downstreamkernel_package "$builddir" "$pkgdir" "$_carch" \
+		"$_flavor" "$_outdir"
+
+	make dtbs_install O="$_outdir" ARCH="$_carch" \
+		INSTALL_DTBS_PATH="$pkgdir"/boot/dtbs
+}
+
+sha512sums="
+de91c284afe42787a98bb36979b7f997b19eb8d4a9a0d4ad1e68c1dc569d3c4b62cfdf1cb0c606160a8a6b54d929275d74331208aab9bd7c1d141f7da9fc43b6  linux-samsung-a05s-84bb912e0c40bcc8050a0176c60308a4c89dd51a.tar.gz
+f3468f870d4807ce708817fe4f1ff3e7f0d63544188c2f5dfb10efd2c30060f08f92f88b1d4a075e7a8380524bc9ff4b7b070202efc021ca94b1d39d446ccd37  config-samsung-a05s.aarch64
+9b4b67cfcac7c354b3b01f93734224ffc899c4794dee881ab01b0872017f8fc5d3d9e14ced2d418f99516f8b49480a073a1e3990f1a82dde679afc3cf15502ba  01-build-dtb.patch
+"
