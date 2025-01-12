@@ -9,6 +9,7 @@ arch="aarch64"
 options="!check !archcheck"
 depends="
 	linux-samsung-a05s
+	make-dynpart-mappings
 	mkbootimg
 	postmarketos-base
 "
@@ -26,5 +27,5 @@ package() {
 }
 
 sha512sums="
-9b1a31e9dd581cbcc2fafd56b8e189294dc351a865c53a69d24fab82aecc37054713f11cb8da99ed0d685905f70342d1c4cad49c6ebbb138c06c6250de54d3bf  deviceinfo
+725aebf434e88096cc79d366b5b3a7778423458dc374791191e58ba3eba2119e2b302b794ca4f3a52d12257b3e87f9ef4ec924a76b712ce3a7fafa5c061858c1  deviceinfo
 "
