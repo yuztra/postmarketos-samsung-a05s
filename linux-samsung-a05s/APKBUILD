@@ -16,9 +16,10 @@ makedepends="
 	bc
 	bison
 	devicepkg-dev
+	elfutils-dev
 	findutils
 	flex
-	elfutils-dev
+	linux-headers
 	openssl-dev
 	perl
 "
